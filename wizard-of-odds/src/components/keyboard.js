@@ -35,8 +35,8 @@ function Keyboard(){
 
     return(
         <div className='keyboard' onKeyDown={handleKeyBoard}>
-            {arr.map(num=>{
-                return <Key keyVal ={num}/>
+            {arr.map((num, index)=>{
+                return <Key keyVal ={num} key={index}/>
             })}
         </div>
     )

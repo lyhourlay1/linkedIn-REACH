@@ -50,3 +50,15 @@
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
+
+#correct {
+    background-color: #528d4e;
+}
+
+#almost {
+    background-color: #b49f39;
+}
+
+#wrong {
+    background-color:  rgb(239, 125, 125);
+}
