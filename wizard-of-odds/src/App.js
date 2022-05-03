@@ -12,7 +12,7 @@ function App() {
   //alternate solution would be pass it as prob which could be ugly
   const [board, setBoard] = useState(boardDefault)
   const [currAttempt, setCurrAttempt] = useState({attempt:0, numberPos: 0})
-
+  const [correctNumbers, setCorrectNumbers]= useState()
   function onDelete(){
     const newBoard = [...board]
     newBoard[currAttempt.attempt][currAttempt.numberPos-1]= ""
@@ -33,7 +33,7 @@ function App() {
       if(correctNumbers.includes(ele)) almost = true
     })
     if(newBoard[currAttempt.attempt].join("")=== correctNumbers){
-
+      
     }
 
     const numberState =  correct? "correct": almost? "almost" : "wrong"
@@ -62,6 +62,9 @@ function App() {
             }, error => {
                 console.log(error);
             });
+        setCorrectNumbers(num)
+        console.log(boardDefault)
+        // setBoard(Array(10).fill(null).map((()=>Array(4).fill(""))))
         console.log(num)
         return num
         //alternate solution using fetch but has to deal with streaming  
@@ -75,10 +78,10 @@ function App() {
         //     console.log(numbers)
         // })
   }
-  const correctNumbers = "1234"
+
   return (
     <div className="App">
-      <div id="myModal" class="modal fade" role="dialog">
+      {/* <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -94,9 +97,10 @@ function App() {
           </div>
 
         </div>
-      </div>
+      </div> */}
       <nav>
         <h1>Mastermind: Wizard of Odd</h1>
+        <button onClick={getRandomNumbers}>Play</button>
         <div className='hint'>Hint: 
           <p>🟩 if at least one correct number at correct position </p>
           <p>🟨 if at least one correct number</p>

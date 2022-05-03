@@ -1,10 +1,8 @@
 import React from 'react'
-import axios from 'axios'
 import Guess from './guess';
 import './board.css'
 
 function Board(){
-
     const createRows = 
         Array(10).fill("").map((ele, index)=>{
             return(        
