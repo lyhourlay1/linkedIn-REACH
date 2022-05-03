@@ -23,7 +23,8 @@ function App() {
     setCurrAttempt(currAttempt)
   }
   function onEnter(){
-    if(currAttempt.numberPos!==5) return;
+    if(currAttempt.numberPos!==4) return;
+    
     const newBoard = [...board]
     let correct = false
     let almost = false
@@ -31,16 +32,20 @@ function App() {
       if(ele=== correctNumbers[index]) correct= true
       if(correctNumbers.includes(ele)) almost = true
     })
+    if(newBoard[currAttempt.attempt].join("")=== correctNumbers){
+
+    }
+
     const numberState =  correct? "correct": almost? "almost" : "wrong"
     const rowElements = document.getElementById(currAttempt.attempt)
-    console.log(numberState)
     rowElements.setAttribute('id', numberState)
+    
     currAttempt.attempt +=1
     currAttempt.numberPos=0
     setCurrAttempt(currAttempt)
   }
   function selectNumber(keyVal){
-    if(currAttempt.numberPos >4) return; 
+    if(currAttempt.numberPos >3) return; 
       const newBoard =[...board]
       newBoard[currAttempt.attempt][currAttempt.numberPos] = keyVal
       setBoard(newBoard)
@@ -73,9 +78,32 @@ function App() {
   const correctNumbers = "1234"
   return (
     <div className="App">
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
       <nav>
         <h1>Mastermind: Wizard of Odd</h1>
+        <div className='hint'>Hint: 
+          <p>🟩 if at least one correct number at correct position </p>
+          <p>🟨 if at least one correct number</p>
+          <p>🟥 if no correct numbers</p>
+        </div>
       </nav>
+      
       <AppContext.Provider value={{board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, selectNumber, correctNumbers}}>
         <Board/>
         <Keyboard/>
