@@ -1,28 +1,29 @@
-.board {
-    width: 100%;
-    border: 1px solid black;
-    display: flex;
+#board {
+    width: 700px;
+    /* display: flex; */
     flex-direction: column;
+    margin-left: auto ;
+    margin-right: auto;
+    display: none;    
 }
 
 .row {
     display: flex;
     flex-direction: row;
     margin: 1px;
+    justify-content: center;
 }
 
-.guess {
-    flex: auto;
-    height: 20px;
-    width: 2px;
+#guess {
+    width: 65px;
+    height: 55px;
     border: 1px solid grey;
     margin: 1px;
-    display: grid;
-    place-items: center;
-    font-size: 15px;
+    font-size: 35px;
     font-weight: bolder;
     color: black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
+    padding-top: 10px;
 }
 
 .keyboard {
@@ -46,14 +47,45 @@
 
 #correct {
     background-color: #528d4e;
+    /* display: flex;
+    flex-direction: row;
+    margin: 1px;
+    justify-content: center; */
+    width: 65px;
+    height: 55px;
+    border: 1px solid grey;
+    margin: 1px;
+    font-size: 35px;
+    font-weight: bolder;
+    color: black;
+    font-family: Arial;
+    padding-top: 10px;
 }
 
 #almost {
     background-color: #b49f39;
+    width: 65px;
+    height: 55px;
+    border: 1px solid grey;
+    margin: 1px;
+    font-size: 35px;
+    font-weight: bolder;
+    color: black;
+    font-family: Arial;
+    padding-top: 10px;
 }
 
 #wrong {
     background-color:  red;
+    width: 65px;
+    height: 55px;
+    border: 1px solid grey;
+    margin: 1px;
+    font-size: 35px;
+    font-weight: bolder;
+    color: black;
+    font-family: Arial;
+    padding-top: 10px;
 }
 
 p{

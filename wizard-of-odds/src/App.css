@@ -38,3 +38,14 @@
 }
 
 
+#restart{
+  display : none;
+}
+
+#lost{
+  display: none;
+}
+
+#won{
+  display: none;
+}

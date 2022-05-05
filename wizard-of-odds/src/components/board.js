@@ -6,7 +6,7 @@ function Board(){
     const createRows = 
         Array(10).fill("").map((ele, index)=>{
             return(        
-                <div className='row' id={index} key={index}>
+                <div className='row'  key={index}>
                     {Array(4).fill("").map((ele,pos)=>{                       
                         return (
                             <Guess guessPos={pos} attemptNum= {index} key={index*10+pos}/>
@@ -16,7 +16,7 @@ function Board(){
             )
         })
     return(
-        <div className='board'>
+        <div id='board'>
             {/* <button onClick={getRandomNumbers}>
                 Start
             </button> */}
