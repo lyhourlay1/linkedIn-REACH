@@ -4,6 +4,8 @@ import Keyboard from './components/keyboard';
 import {createContext, useState} from 'react'
 import { boardDefault } from './components/numbers';
 import axios from 'axios';
+import strange from './strange.png'
+import wanda from './wanda.png'
 
 export const AppContext = createContext();
 
@@ -120,20 +122,24 @@ function App() {
         <button onClick={()=>window.location.reload()}>Restart</button>
       </div>
       <div id ="game">
-        <nav>
-          <h1>Mastermind: Wizard of Odd</h1>
-          <button onClick={handleStart} id="start">Play</button>
-          <button id = "restart" onClick={()=>window.location.reload()}> Restart </button>
-          <div className='hint'>Hint: 
-            <p>🟩 if at least one correct number at correct position </p>
-            <p>🟨 if at least one correct number</p>
-            <p>🟥 if no correct numbers</p>
+        <nav className='nav-container'>
+          <img src={strange} width="150px"/>
+          <div>
+            <h1>Mastermind: Wizard of Odds</h1>
+            <button onClick={handleStart} id="start">Play</button>
+            <button id = "restart" onClick={()=>window.location.reload()}> Restart </button>
+            <div className='hint'>Hint: 
+              <p>🟩 if at least one correct number at correct position </p>
+              <p>🟨 if at least one correct number</p>
+              <p>🟥 if no correct numbers</p>
+            </div>
           </div>
+          <img src={wanda} width="150px"/>
         </nav>
         
         <AppContext.Provider value={{board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, selectNumber, correctNumbers}}>
-          <Board/>
           <Keyboard/>
+          <Board/>
         </AppContext.Provider>      
 
       </div>

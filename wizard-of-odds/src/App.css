@@ -49,3 +49,12 @@
 #won{
   display: none;
 }
+
+.nav-container{
+  display: flex;
+  justify-content: center;
+}
+
+#start{
+  margin-bottom: 15px;
+}
