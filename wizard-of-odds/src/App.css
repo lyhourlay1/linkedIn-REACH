@@ -40,6 +40,9 @@
 
 #restart{
   display : none;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 15px;
 }
 
 #lost{
@@ -58,3 +61,4 @@
 #start{
   margin-bottom: 15px;
 }
+

@@ -17,9 +17,6 @@ function Board(){
         })
     return(
         <div id='board'>
-            {/* <button onClick={getRandomNumbers}>
-                Start
-            </button> */}
             {createRows}
         </div>
     )

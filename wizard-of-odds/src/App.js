@@ -24,9 +24,12 @@ function App() {
     }
     setCurrAttempt(currAttempt)
   }
+
+  //when user press enter, it updates the board and change the board id to update
+  //the color insdie the box
   function onEnter(){
     if(currAttempt.numberPos!==4) return;
-    
+  
     const newBoard = [...board]
     let correct = false
     let almost = false
@@ -37,24 +40,26 @@ function App() {
     if(newBoard[currAttempt.attempt].join("")=== correctNumbers){
       toggleScreen("won", true)
       toggleScreen("game", false)
+    }else{
+      //depending on the input the update the id into the numberState to update
+      //the color(green, yellow, red)
+      const numberState =  correct? "correct": almost? "almost" : "wrong"
+      const rowElements = document.getElementsByClassName(currAttempt.attempt)
+      for(let i=0; i<rowElements.length; i++){
+        rowElements[i].setAttribute('id', numberState)
+      }    
+      currAttempt.attempt +=1
+      currAttempt.numberPos=0
+      if(currAttempt.attempt>9){
+        toggleScreen('lost', true)
+        toggleScreen('game', false)
+      }
+      setCurrAttempt(currAttempt)
     }
 
-    const numberState =  correct? "correct": almost? "almost" : "wrong"
-    // const rowElements = document.getElementById(currAttempt.attempt)
-    const rowElements = document.getElementsByClassName(currAttempt.attempt)
-    for(let i=0; i<rowElements.length; i++){
-      rowElements[i].setAttribute('id', numberState)
-    }
-    // rowElements.setAttribute('class', numberState)
-    
-    currAttempt.attempt +=1
-    currAttempt.numberPos=0
-    if(currAttempt.attempt>9){
-      toggleScreen('lost', true)
-      toggleScreen('game', false)
-    }
-    setCurrAttempt(currAttempt)
   }
+
+  //handle the numbers that is clicked or pressed
   function selectNumber(keyVal){
     if(currAttempt.numberPos >3) return; 
       const newBoard =[...board]
@@ -63,6 +68,9 @@ function App() {
       currAttempt.numberPos+=1
       setCurrAttempt(currAttempt)
   }
+
+  //handle start once the user click play by generate the random integer and
+  //iterate through the board to ensure that the board is clean with empty string
   async function handleStart(){
         //add await wait for code to execute before going to the next line console.log(num)
         const num = await axios.get("https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new")
@@ -85,14 +93,18 @@ function App() {
             // })
         console.log(num)
         setCorrectNumbers(num)
+
+        //hide the start button once play button clicked
         const bttn = document.getElementById("start")
         bttn.style.display ='none'
-
-        const restartBttn = document.getElementById('restart');
-        restartBttn.style.display = 'flex';
-        restartBttn.style.marginLeft = 'auto';
-        restartBttn.style.marginRight = 'auto';
-
+        
+        //display the restart button once play button is clicked
+        // const restartBttn = document.getElementById('restart');
+        // restartBttn.style.display = 'flex';
+        // restartBttn.style.marginLeft = 'auto';
+        // restartBttn.style.marginRight = 'auto';
+        
+        toggleScreen("restart", true)
         toggleScreen("board",true)
         const newBoard = [...board]
         newBoard[0].forEach((ele, index)=>{
