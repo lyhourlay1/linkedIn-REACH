@@ -57,7 +57,7 @@ function App() {
       }
       setCurrAttempt(currAttempt)
     }
-    check(correctNumbers.split(""),newBoard[currAttempt.attempt-1])
+    check(correctNumbers.split(""),newBoard[currAttempt.attempt-1].slice())
   //on enter does not update the board but select number is updating the board
   }
 
