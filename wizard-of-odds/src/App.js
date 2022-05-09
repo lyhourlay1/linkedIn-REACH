@@ -2,7 +2,6 @@ import './App.css';
 import Board from './components/board.js'
 import Keyboard from './components/keyboard';
 import {createContext, useState} from 'react'
-import { boardDefault } from './components/numbers';
 import axios from 'axios';
 import strange from './strange.png'
 import wanda from './wanda.png'
@@ -12,9 +11,11 @@ export const AppContext = createContext();
 function App() {
   //store board state in application context to allow access in all component
   //alternate solution would be pass it as prob which could be ugly
-  const [board, setBoard] = useState(boardDefault)
+  const [board, setBoard] = useState(Array(10).fill(null).map((()=>Array(4).fill(""))))
   const [currAttempt, setCurrAttempt] = useState({attempt:0, numberPos: 0})
   const [correctNumbers, setCorrectNumbers]= useState()
+
+  //deleting the number from the guess
   function onDelete(){
     const newBoard = [...board]
     newBoard[currAttempt.attempt][currAttempt.numberPos-1]= ""
@@ -98,12 +99,6 @@ function App() {
         const bttn = document.getElementById("start")
         bttn.style.display ='none'
         
-        //display the restart button once play button is clicked
-        // const restartBttn = document.getElementById('restart');
-        // restartBttn.style.display = 'flex';
-        // restartBttn.style.marginLeft = 'auto';
-        // restartBttn.style.marginRight = 'auto';
-        
         toggleScreen("restart", true)
         toggleScreen("board",true)
         const newBoard = [...board]
@@ -113,6 +108,7 @@ function App() {
         setCurrAttempt({attempt:0, numberPos: 0})
   }
 
+  //hide or show the element by id
   function toggleScreen(id, toggle){
     let ele = document.getElementById(id)
     let display = toggle ? 'block': 'none'
@@ -135,7 +131,7 @@ function App() {
       </div>
       <div id ="game">
         <nav className='nav-container'>
-          <img src={strange} width="150px"/>
+          <img src={strange} width="150px" alt =""/>
           <div>
             <h1>Mastermind: Wizard of Odds</h1>
             <button onClick={handleStart} id="start">Play</button>
@@ -146,7 +142,7 @@ function App() {
               <p>🟥 if no correct numbers</p>
             </div>
           </div>
-          <img src={wanda} width="150px"/>
+          <img src={wanda} width="150px" alt =""/>
         </nav>
         
         <AppContext.Provider value={{board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, selectNumber, correctNumbers}}>
