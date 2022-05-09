@@ -57,7 +57,29 @@ function App() {
       }
       setCurrAttempt(currAttempt)
     }
+    check(correctNumbers.split(""),newBoard[currAttempt.attempt-1])
+  //on enter does not update the board but select number is updating the board
+  }
 
+  function check(correctNums, guesses){
+    console.log('a',correctNums)
+    console.log('b',guesses)
+    let green = 0
+    correctNums.forEach((ele,index)=>{
+      if(ele === guesses[index]){
+        green+=1
+        correctNums[index]= 'x'
+      }
+    })
+    let yellow =0
+    correctNums.forEach((ele,index)=>{
+      if(ele !== 'x' && guesses.includes(ele)){
+        yellow+=1
+        correctNums[index]= 'x'
+      }
+    })
+    let red = 4-green-yellow
+    alert(`${green} greens, ${yellow} yellows, ${red} reds`);
   }
 
   //handle the numbers that is clicked or pressed
@@ -156,3 +178,7 @@ function App() {
 }
 
 export default App;
+
+
+//correct 
+//
